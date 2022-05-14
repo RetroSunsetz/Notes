@@ -17,3 +17,10 @@ searchsploit KEYWORD  ~ search an exploit for a service
 #nmap
 nmap -sV -sC -p- -T4 ip  ~Once and for all :)
 nmap -sV -sC -p- -T4 -Pn ip  ~for windows machines
+nmap --script vuln -p port ip  ~find exploits related to service
+#privesc
+[Linux]
+uname -a  ~get kernel version
+sudo -l  ~what files can be used with sudo
+/bin/sh -i  ~spawning a shell
+[Windows]
