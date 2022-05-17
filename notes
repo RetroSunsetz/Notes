@@ -33,3 +33,6 @@ sudo -l  ~what files can be used with sudo
 
 #ssti
 ${7*7} OR {{7*7}}  ~test if website is vulnerable to ssti
+
+#verify RCE
+whoami  ~get username on both windows and linux
