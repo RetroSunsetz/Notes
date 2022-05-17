@@ -1,28 +1,35 @@
 #ssh
 hydra -l username -P passwordslist ssh://ip  ~bruteforce credintials
+
 #http
 dirb http://ip  ~bruteforce directories
 nikto -host http://ip  ~web app vulnerbility scanning
+
 #smb
 smbclient -L //ip/ -U anonymous  ~list shares using anonymous login
 smbclient //ip/share  ~access a share
+
 #metasploit
 search KEYWORD  ~search for an exploit
 use PATH/TO/EXPLOIT/PAYLOAD  ~use specified exploit/payload
 show options  ~show current settings
 set  ~to edit setting of an exploit/payload
 run  ~execute current exploit
+
 #searchsploit
 searchsploit KEYWORD  ~ search an exploit for a service
+
 #nmap
 nmap -sV -sC -p- -T4 ip  ~Once and for all :)
 nmap -sV -sC -p- -T4 -Pn ip  ~for windows machines
 nmap --script vuln -p port ip  ~find exploits related to service
+
 #privesc
 [Linux]
 uname -a  ~get kernel version
 sudo -l  ~what files can be used with sudo
 /bin/sh -i  ~spawning a shell
 [Windows]
+
 #ssti
 ${7*7} OR {{7*7}}  ~test if website is vulnerable to ssti
