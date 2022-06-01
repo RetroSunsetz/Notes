@@ -41,3 +41,6 @@ dir  ~list directories/files on windows
 
 #active directory
 kerbrute [mode] -d [dns domain name] --dc [domain controller]
+
+#routing and pivoting
+sudo ip route add [10][192].0.0.0/[8][24] via [gateway ip]
