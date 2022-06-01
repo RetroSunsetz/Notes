@@ -36,3 +36,8 @@ ${7*7} OR {{7*7}}  ~test if website is vulnerable to ssti
 
 #verify RCE
 whoami  ~get username on both windows and linux
+id  ~get id on linux
+dir  ~list directories/files on windows
+
+#active directory
+kerbrute [mode] -d [dns domain name] --dc [domain controller]
